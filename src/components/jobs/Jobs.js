@@ -13,14 +13,17 @@ const Jobs = observer(() => {
       <div className={classes.jobs}>
         <h2>Jobs</h2>
         <ul>
-          {jobs.openings.map((opening) => (
+          {jobs.openings.map((opening, index) => (
             // TODO: Jobs should have ids for usage as keys in
             // the data model
-            <JobPreview opening={opening} />
+            <JobPreview
+              opening={opening}
+              isSelected={jobs.selectedIndex === index}
+            />
           ))}
         </ul>
       </div>
-      <Job opening={jobs.openings[0]} />
+      <Job opening={jobs.openings[jobs.selectedIndex]} />
     </div>
   );
 });

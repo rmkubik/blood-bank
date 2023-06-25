@@ -16,6 +16,13 @@ const rootStore = RootModel.create({
   character: {
     blood: {},
     name: "Randy",
+    rent: {
+      monthlyPayment: 1000,
+    },
+    energy: {
+      current: 10,
+      max: 10,
+    },
     skills: [
       {
         key: "hauling",

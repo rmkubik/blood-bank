@@ -1,6 +1,6 @@
 import React from "react";
 
-const JobPreview = ({ opening }) => {
+const JobPreview = ({ opening, isSelected }) => {
   return (
     <li>
       <h3>{opening.title}</h3>

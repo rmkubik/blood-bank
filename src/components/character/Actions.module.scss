@@ -1,0 +1,9 @@
+.actions {
+  display: flex;
+  flex-direction: column;
+
+  button {
+    cursor: pointer;
+    margin-bottom: 0.25rem;
+  }
+}

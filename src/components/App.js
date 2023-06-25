@@ -1,5 +1,5 @@
 import React from "react";
-import Character from "./Character";
+import Character from "./character/Character";
 import Inbox from "./inbox/Inbox";
 import Jobs from "./jobs/Jobs";
 import { RootContextProvider, rootStore } from "../models/Root";

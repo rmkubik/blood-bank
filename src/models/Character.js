@@ -6,8 +6,15 @@ const CharacterSkillModel = types.model({
 });
 
 const CharacterModel = types.model({
+  rent: types.model({
+    monthlyPayment: types.number,
+  }),
+  energy: types.model({
+    current: types.number,
+    max: types.number,
+  }),
   blood: types.model({
-    current: types.optional(types.number, 10),
+    current: types.optional(types.number, 1400),
     type: types.optional(
       types.enumeration(["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]),
       "A+"

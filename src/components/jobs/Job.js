@@ -9,6 +9,9 @@ const Job = ({ opening }) => {
         <strong>{opening.company}</strong>
       </p>
       <p>{opening.body}</p>
+      <button>Tweak Resume, +1🕐</button>
+      <button>Write Cover Letter, +1🕐</button>
+      <button>Apply, +1🕐</button>
     </div>
   );
 };
