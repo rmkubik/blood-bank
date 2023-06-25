@@ -1,0 +1,16 @@
+.inbox {
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      &:not(:last-child) {
+        border-bottom: 1px solid black;
+      }
+
+      &.selected {
+        background: aliceblue;
+      }
+    }
+  }
+}
