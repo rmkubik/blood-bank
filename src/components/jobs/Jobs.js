@@ -2,25 +2,25 @@ import { observer } from "mobx-react-lite";
 import React from "react";
 import { useRootStore } from "../../models/Root";
 import * as classes from "./Jobs.module.scss";
+import JobPreview from "./JobPreview";
+import Job from "./Job";
 
 const Jobs = observer(() => {
   const { jobs } = useRootStore();
 
   return (
-    <div className={classes.jobs}>
-      <h2>Jobs</h2>
-      <ul>
-        {jobs.openings.map((opening) => {
-          return (
-            <li>
-              <h3>{opening.title}</h3>
-              <p>
-                <em>{opening.body.slice(0, 60)}...</em>
-              </p>
-            </li>
-          );
-        })}
-      </ul>
+    <div>
+      <div className={classes.jobs}>
+        <h2>Jobs</h2>
+        <ul>
+          {jobs.openings.map((opening) => (
+            // TODO: Jobs should have ids for usage as keys in
+            // the data model
+            <JobPreview opening={opening} />
+          ))}
+        </ul>
+      </div>
+      <Job opening={jobs.openings[0]} />
     </div>
   );
 });

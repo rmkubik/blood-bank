@@ -110,8 +110,8 @@ const rootStore = RootModel.create({
         body: "",
       },
       {
-        title: "Want reanimation legal specialist",
-        company: "Mortimer, Gargamel, & Associates",
+        title: "Wanted: Reanimation legal specialist",
+        company: "Mortimer, Gargamel & Associates",
         body: "",
       },
       {
@@ -131,7 +131,7 @@ const rootStore = RootModel.create({
       },
       {
         title: "Min wage, blood bagger needed ASAP",
-        company: "LeFay-Mart",
+        company: "le Fay Mart",
         body: "",
       },
     ],
