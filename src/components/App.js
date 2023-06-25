@@ -1,7 +1,7 @@
 import React from "react";
 import Character from "./Character";
 import Inbox from "./inbox/Inbox";
-import Jobs from "./Jobs";
+import Jobs from "./jobs/Jobs";
 import { RootContextProvider, rootStore } from "../models/Root";
 
 const App = () => {
