@@ -1,0 +1,5 @@
+name: Snack
+effects:
+  - hour 0.5
+  - energy 1
+  - blood -5

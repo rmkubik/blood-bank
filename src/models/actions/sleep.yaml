@@ -1,0 +1,4 @@
+name: Sleep
+effects:
+  - hour 8
+  - energy 10

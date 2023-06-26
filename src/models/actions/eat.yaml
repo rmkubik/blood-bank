@@ -1,0 +1,5 @@
+name: Eat
+effects:
+  - hour 1
+  - energy 3
+  - blood -20

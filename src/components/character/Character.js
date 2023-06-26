@@ -2,15 +2,16 @@ import { observer } from "mobx-react-lite";
 import React from "react";
 import { useRootStore } from "../../models/Root";
 import Actions from "./Actions";
+import { format } from "date-fns";
 
 const Character = observer(() => {
-  const { character, skills } = useRootStore();
+  const { character, skills, dateTime } = useRootStore();
 
   return (
     <div>
       <h2>Character</h2>
-      <p>📆 Sunday, June 25th, 2023</p>
-      <p>🕐 4:00 PM</p>
+      <p>📆 {format(dateTime.current, "EEEE, LLLL do, y")}</p>
+      <p>🕐 {format(dateTime.current, "h:mm a")}</p>
       <p>{character.name}</p>
       <h3>Stats</h3>
       <p>Blood: 🩸{character.blood.current}</p>

@@ -1,0 +1,5 @@
+name: Drive for BloodDash
+effects:
+  - hour 10
+  - energy -8
+  - blood 100

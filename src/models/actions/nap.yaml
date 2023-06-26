@@ -1,0 +1,4 @@
+name: Nap
+effects:
+  - hour 2
+  - energy 2

@@ -8,14 +8,42 @@ import { CompaniesModel } from "./companies/Companies";
 import companies from "./companies/data";
 import openings from "./jobs/data";
 import templates from "./messages/templates";
+import actions from "./actions";
+import parseActionEffects from "./actions/parseActionEffects";
+import { DateTimeModel } from "./DateTime";
 
-const RootModel = types.model({
-  character: CharacterModel,
-  skills: SkillsModel,
-  inbox: InboxModel,
-  jobs: JobsModel,
-  companies: CompaniesModel,
-});
+const RootModel = types
+  .model({
+    character: CharacterModel,
+    skills: SkillsModel,
+    inbox: InboxModel,
+    jobs: JobsModel,
+    companies: CompaniesModel,
+    dateTime: DateTimeModel,
+  })
+  .actions((self) => ({
+    takeAction(actionKey) {
+      const action = actions[actionKey];
+      const effects = parseActionEffects(action);
+
+      effects.forEach(([affectedItem, value]) => {
+        switch (affectedItem) {
+          case "hour":
+            self.dateTime.adjustHour(value);
+            break;
+          case "energy":
+            self.character.adjustEnergy(value);
+            break;
+          case "blood":
+            self.character.adjustBlood(value);
+            break;
+          case "rent":
+            self.character.adjustRent(value);
+            break;
+        }
+      });
+    },
+  }));
 
 const rootStore = RootModel.create({
   character: {
@@ -74,6 +102,9 @@ const rootStore = RootModel.create({
   },
   companies: {
     list: companies,
+  },
+  dateTime: {
+    current: new Date("2023-06-25T16:00:00"),
   },
 });
 
