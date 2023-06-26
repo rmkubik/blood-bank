@@ -1,8 +1,15 @@
 .messagePreview {
+  padding-top: 0.5rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 
+  cursor: pointer;
+
   &.selected {
     background: aliceblue;
+  }
+
+  h3 {
+    margin-top: 0;
   }
 }

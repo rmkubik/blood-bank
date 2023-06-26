@@ -19,6 +19,7 @@ const Jobs = observer(() => {
             <JobPreview
               opening={opening}
               isSelected={jobs.selectedIndex === index}
+              onClick={() => jobs.select(index)}
             />
           ))}
         </ul>

@@ -19,6 +19,7 @@ const Inbox = observer(() => {
             <MessagePreview
               isSelected={inbox.selectedIndex === index}
               message={message}
+              onClick={() => inbox.select(index)}
             />
           ))}
         </ul>
