@@ -18,6 +18,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.9.2"
+    "@parcel/resolver-glob": "^2.9.3",
+    "@parcel/transformer-sass": "^2.9.2",
+    "@parcel/transformer-yaml": "^2.9.3"
   }
 }

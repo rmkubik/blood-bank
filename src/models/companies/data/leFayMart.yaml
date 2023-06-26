@@ -1,0 +1,12 @@
+name: le Fay Mart
+culture:
+  desiredSkills:
+    - key: groveling
+      minLevel: 2
+  desiredStats:
+    - key: quality
+      minValue: "D"
+selectivityModifier: 0.5
+payRangeModifier: 1.2
+contacts:
+  automation: "no-reply@lefaymart.com"

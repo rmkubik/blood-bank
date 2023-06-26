@@ -14,9 +14,10 @@ const Character = observer(() => {
       <p>{character.name}</p>
       <h3>Stats</h3>
       <p>Blood: 🩸{character.blood.current}</p>
+      <p>Rent: 🩸{character.rent.monthlyPayment}/mo.</p>
       <p>Blood Type: {character.blood.type}</p>
       <p>Blood Quality: {character.blood.quality}</p>
-      <p>Rent: 🩸{character.rent.monthlyPayment}/mo.</p>
+      <p>Health: ❤️ 10/10</p>
       <p>
         Energy: ⚡️{character.energy.current}/{character.energy.max}
       </p>

@@ -9,6 +9,7 @@ const Message = ({ message }) => {
         <strong>{message.subject}</strong>
       </p>
       <p>{message.body}</p>
+      <button>Delete</button>
     </div>
   );
 };

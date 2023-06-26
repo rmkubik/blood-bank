@@ -1,0 +1,12 @@
+name: Corpse Management Inc.
+culture:
+  desiredSkills:
+    - key: groveling
+      minLevel: 1
+  desiredStats:
+    - key: quality
+      minValue: "A"
+selectivityModifier: 0.9
+payRangeModifier: 0.8
+contacts:
+  automation: "no-reply@corpsemanagement.gov"

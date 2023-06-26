@@ -1,0 +1,12 @@
+name: Vampyre Industrial
+culture:
+  desiredSkills:
+    - key: groveling
+      minLevel: 1
+  desiredStats:
+    - key: quality
+      minValue: "A"
+selectivityModifier: 0.7
+payRangeModifier: 1.0
+contacts:
+  automation: "no-reply@vamp-industrial.com"

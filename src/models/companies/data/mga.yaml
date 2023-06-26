@@ -1,0 +1,12 @@
+name: Mortimer, Gargamel & Associates
+culture:
+  desiredSkills:
+    - key: groveling
+      minLevel: 1
+  desiredStats:
+    - key: quality
+      minValue: "A"
+selectivityModifier: 0.3
+payRangeModifier: 1.6
+contacts:
+  automation: "no-reply@mga.com"

@@ -1,0 +1,12 @@
+name: Bone Tech
+culture:
+  desiredSkills:
+    - key: groveling
+      minLevel: 1
+  desiredStats:
+    - key: quality
+      minValue: "A"
+selectivityModifier: 0.5
+payRangeModifier: 1.2
+contacts:
+  automation: "no-reply@bone.tech"
