@@ -1,0 +1,13 @@
+subject: Thank you for your purchase!
+from: noreply@gap.com
+body: |
+  {{playerName}}, your JEAN(S)™️ order if confirmed!
+
+  Keep an eye out for a shipping notice soon. And get ready to rock your brand new JEAN(S)™️!
+
+  Order Information:
+
+  1x JEAN™️ - {{jeanPrice}}🩸
+
+  Love,
+  GAP

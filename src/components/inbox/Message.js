@@ -2,6 +2,7 @@ import React from "react";
 import * as classes from "./Message.module.scss";
 import ButtonSet from "../actions/ButtonSet";
 import MessageHeader from "./MessageHeader";
+import ActionButton from "../actions/ActionButton";
 
 const Message = ({ message }) => {
   return (
@@ -12,6 +13,9 @@ const Message = ({ message }) => {
       </p>
       <p>{message.body}</p>
       <ButtonSet>
+        {message.actions?.map((action) => (
+          <ActionButton action={action} />
+        ))}
         <button>Delete</button>
       </ButtonSet>
     </div>

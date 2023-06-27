@@ -1,26 +1,39 @@
 import { types } from "mobx-state-tree";
+import { v4 } from "uuid";
 
 const MessageModel = types.model({
+  id: types.identifier,
   subject: types.string,
   from: types.string,
   body: types.string,
   date: types.Date,
+  actions: types.array(types.string),
 });
 // TODO: body should be a template ref, not body text
-// TODO: each message needs a timestamp
-// TODO: each message needs an id
 
 const InboxModel = types
   .model({
     messages: types.array(MessageModel),
-    selectedIndex: types.optional(types.number, 0),
+    selectedId: types.maybe(types.string),
   })
+  .views((self) => ({
+    get selectedMessage() {
+      return self.messages.find((message) => message.id === self.selectedId);
+    },
+    isSelected(message) {
+      if (!self.selectedMessage) {
+        return false;
+      }
+
+      return self.selectedMessage.id === message.id;
+    },
+  }))
   .actions((self) => ({
-    select: (index) => {
-      self.selectedIndex = index;
+    select: (id) => {
+      self.selectedId = id;
     },
     addMessage: (message) => {
-      self.messages.push(MessageModel.create(message));
+      self.messages.push(MessageModel.create({ ...message, id: v4() }));
     },
   }));
 

@@ -4,6 +4,7 @@ const OpeningModel = types.model({
   title: types.string,
   company: types.string,
   body: types.string, // this is probably supposed to be an html document? maybe a ref to a react doc?
+  role: types.string,
 });
 
 const JobsModel = types

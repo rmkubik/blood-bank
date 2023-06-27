@@ -8,11 +8,12 @@ import { CompaniesModel } from "./companies/Companies";
 import companies from "./companies/data";
 import openings from "./jobs/data";
 import templates from "./messages/templates";
-import actions from "./actions";
+import actions from "./actions/data";
 import parseActionEffects from "./actions/parseActionEffects";
 import { DateTimeModel } from "./DateTime";
 import parseActionEvents from "./actions/parseActionEvents";
 import fillTemplate from "./messages/fillTemplate";
+import { v4 } from "uuid";
 
 const RootModel = types
   .model({
@@ -82,12 +83,16 @@ const RootModel = types
             if (time === "now") {
               self.inbox.addMessage({
                 subject: template.subject,
-                from: currentOpeningCompany.contacts[template.from],
+                from:
+                  currentOpeningCompany.contacts[template.from] ??
+                  template.from,
                 body: fillTemplate(template.body, {
                   playerName: "Randy",
                   companyNameShort:
                     currentOpeningCompany.shortName ??
                     currentOpeningCompany.name,
+                  roleName: currentOpening.role,
+                  jeanPrice: 80,
                 }),
                 date: self.dateTime.current,
               });
@@ -149,15 +154,18 @@ const rootStore = RootModel.create({
         ...templates.spamGap2,
         body: fillTemplate(templates.spamGap2.body, { firstName: "Randy" }),
         date: new Date("2023-06-25T16:00:00"),
+        id: v4(),
       },
       {
         ...templates.layOff,
         date: new Date("2023-06-25T15:00:00"),
+        id: v4(),
       },
       {
         ...templates.spamGap,
         body: fillTemplate(templates.spamGap.body, { firstName: "Randy" }),
         date: new Date("2023-06-24T16:00:00"),
+        id: v4(),
       },
     ],
   },

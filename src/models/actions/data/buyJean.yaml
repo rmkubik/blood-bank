@@ -1,0 +1,6 @@
+name: Buy JEAN™️
+effects:
+  - hour 0.5
+  - blood -80
+events:
+  - message now thankYouForBuyJean

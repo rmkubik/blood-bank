@@ -21,14 +21,19 @@ const Inbox = observer(() => {
             .sort((a, b) => compareDesc(a.date, b.date))
             .map((message, index) => (
               <MessagePreview
-                isSelected={inbox.selectedIndex === index}
+                key={message.id}
+                isSelected={inbox.isSelected(message)}
                 message={message}
-                onClick={() => inbox.select(index)}
+                onClick={() =>
+                  inbox.isSelected(message)
+                    ? inbox.select(undefined)
+                    : inbox.select(message.id)
+                }
               />
             ))}
         </ul>
       </div>
-      <Message message={inbox.messages[inbox.selectedIndex]} />
+      {inbox.selectedMessage && <Message message={inbox.selectedMessage} />}
     </div>
   );
 });
