@@ -1,0 +1,9 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  > *:first-child {
+    flex-grow: 1;
+  }
+}

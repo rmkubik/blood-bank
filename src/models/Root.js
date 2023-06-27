@@ -89,6 +89,7 @@ const RootModel = types
                     currentOpeningCompany.shortName ??
                     currentOpeningCompany.name,
                 }),
+                date: self.dateTime.current,
               });
             }
             break;

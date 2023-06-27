@@ -1,7 +1,13 @@
 import React from "react";
+import { format, isSameDay } from "date-fns";
+import { observer } from "mobx-react-lite";
 import * as classes from "./MessagePreview.module.scss";
+import { useRootStore } from "../../models/Root";
+import MessageHeader from "./MessageHeader";
 
-const MessagePreview = ({ message, isSelected, onClick }) => {
+const MessagePreview = observer(({ message, isSelected, onClick }) => {
+  const { dateTime } = useRootStore();
+
   return (
     <li
       className={
@@ -9,7 +15,7 @@ const MessagePreview = ({ message, isSelected, onClick }) => {
       }
       onClick={onClick}
     >
-      <h3>{message.from}</h3>
+      <MessageHeader message={message} />
       <p>
         <strong>{message.subject}</strong>
       </p>
@@ -18,6 +24,6 @@ const MessagePreview = ({ message, isSelected, onClick }) => {
       </p>
     </li>
   );
-};
+});
 
 export default MessagePreview;

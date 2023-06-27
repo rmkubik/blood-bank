@@ -1,11 +1,12 @@
 import React from "react";
 import * as classes from "./Message.module.scss";
 import ButtonSet from "../actions/ButtonSet";
+import MessageHeader from "./MessageHeader";
 
 const Message = ({ message }) => {
   return (
     <div className={classes.message}>
-      <h3>{message.from}</h3>
+      <MessageHeader message={message} />
       <p>
         <strong>{message.subject}</strong>
       </p>
