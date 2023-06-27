@@ -3,6 +3,7 @@ import * as classes from "./Job.module.scss";
 import { observer } from "mobx-react-lite";
 import { useRootStore } from "../../models/Root";
 import ButtonSet from "../actions/ButtonSet";
+import ActionButton from "../actions/ActionButton";
 
 const Job = observer(({ opening }) => {
   const { companies } = useRootStore();
@@ -16,9 +17,9 @@ const Job = observer(({ opening }) => {
       </p>
       <p>{opening.body}</p>
       <ButtonSet>
-        <button>Tweak Resume, +1🕐, -1⚡️</button>
-        <button>Write Cover Letter, +1🕐, -1⚡️</button>
-        <button>Apply, +1🕐, -1⚡️</button>
+        <ActionButton action="tweakResume" />
+        <ActionButton action="writeCoverLetter" />
+        <ActionButton action="applyToJob" />
       </ButtonSet>
     </div>
   );

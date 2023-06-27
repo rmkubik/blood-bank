@@ -1,0 +1,4 @@
+name: Tweak Resume
+effects:
+  - hour 1
+  - energy -2

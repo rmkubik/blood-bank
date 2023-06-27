@@ -3,8 +3,12 @@ import { types } from "mobx-state-tree";
 const MessageModel = types.model({
   subject: types.string,
   from: types.string,
-  body: types.string, // this is probably supposed to be an html document? maybe a ref to a react doc?
+  body: types.string,
+  date: types.Date,
 });
+// TODO: body should be a template ref, not body text
+// TODO: each message needs a timestamp
+// TODO: each message needs an id
 
 const InboxModel = types
   .model({
@@ -14,6 +18,9 @@ const InboxModel = types
   .actions((self) => ({
     select: (index) => {
       self.selectedIndex = index;
+    },
+    addMessage: (message) => {
+      self.messages.push(MessageModel.create(message));
     },
   }));
 

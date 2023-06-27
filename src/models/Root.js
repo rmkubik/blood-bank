@@ -11,6 +11,8 @@ import templates from "./messages/templates";
 import actions from "./actions";
 import parseActionEffects from "./actions/parseActionEffects";
 import { DateTimeModel } from "./DateTime";
+import parseActionEvents from "./actions/parseActionEvents";
+import fillTemplate from "./messages/fillTemplate";
 
 const RootModel = types
   .model({
@@ -26,6 +28,28 @@ const RootModel = types
       const action = actions[actionKey];
       const effects = parseActionEffects(action);
 
+      // TODO:
+      // I think we want to hook in here
+      // and do stuff like make the job applications
+      // have effect?
+      // I think job buttons modify attributes on the
+      // job opening like itself?
+      // tweakedResume: 1
+      // tweakedResume: 2
+      // coverLetter: true
+      // applied: true
+      //
+      // Then maybe on a day rollover:
+      // get all applied letters?
+      // no?
+      // we probably want a timestamp where we make
+      // a bunch of rolls to see what happens?
+      //
+      // or maybe just every arbitrary value
+      // is broadcasted via mst and any thing
+      // that cares can observe a value, like time,
+      // and do whatever the hell it wants...?
+
       effects.forEach(([affectedItem, value]) => {
         switch (affectedItem) {
           case "hour":
@@ -40,6 +64,35 @@ const RootModel = types
           case "rent":
             self.character.adjustRent(value);
             break;
+        }
+      });
+
+      const events = parseActionEvents(action);
+      events.forEach(([eventName, ...rest]) => {
+        switch (eventName) {
+          case "message": {
+            const [time, templateKey] = rest;
+
+            const template = templates[templateKey];
+            const { currentOpening } = self.jobs;
+            const currentOpeningCompany = self.companies.list.get(
+              currentOpening.company
+            );
+
+            if (time === "now") {
+              self.inbox.addMessage({
+                subject: template.subject,
+                from: currentOpeningCompany.contacts[template.from],
+                body: fillTemplate(template.body, {
+                  playerName: "Randy",
+                  companyNameShort:
+                    currentOpeningCompany.shortName ??
+                    currentOpeningCompany.name,
+                }),
+              });
+            }
+            break;
+          }
         }
       });
     },
@@ -91,10 +144,20 @@ const rootStore = RootModel.create({
   },
   inbox: {
     messages: [
-      templates.thankYouForInterest,
-      templates.thankYouForInterest,
-      templates.thankYouForInterest,
-      templates.thankYouForInterest,
+      {
+        ...templates.spamGap2,
+        body: fillTemplate(templates.spamGap2.body, { firstName: "Randy" }),
+        date: new Date("2023-06-25T16:00:00"),
+      },
+      {
+        ...templates.layOff,
+        date: new Date("2023-06-25T15:00:00"),
+      },
+      {
+        ...templates.spamGap,
+        body: fillTemplate(templates.spamGap.body, { firstName: "Randy" }),
+        date: new Date("2023-06-24T16:00:00"),
+      },
     ],
   },
   jobs: {

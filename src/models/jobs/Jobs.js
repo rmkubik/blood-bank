@@ -11,6 +11,11 @@ const JobsModel = types
     openings: types.array(OpeningModel),
     selectedIndex: types.optional(types.number, 0),
   })
+  .views((self) => ({
+    get currentOpening() {
+      return self.openings[self.selectedIndex];
+    },
+  }))
   .actions((self) => ({
     select: (index) => {
       self.selectedIndex = index;

@@ -1,5 +1,6 @@
 import React from "react";
 import * as classes from "./Message.module.scss";
+import ButtonSet from "../actions/ButtonSet";
 
 const Message = ({ message }) => {
   return (
@@ -9,7 +10,9 @@ const Message = ({ message }) => {
         <strong>{message.subject}</strong>
       </p>
       <p>{message.body}</p>
-      <button>Delete</button>
+      <ButtonSet>
+        <button>Delete</button>
+      </ButtonSet>
     </div>
   );
 };

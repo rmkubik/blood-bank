@@ -2,6 +2,7 @@ import { types } from "mobx-state-tree";
 
 const CompanyModel = types.model({
   name: types.string,
+  shortName: types.maybe(types.string),
   culture: types.model({
     desiredSkills: types.array(
       types.model({

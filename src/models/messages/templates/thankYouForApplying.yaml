@@ -1,0 +1,11 @@
+subject: Thank you for your application
+from: automation
+body: |
+  Hi {{playerName}},
+
+  Thank you for your interest in {{companyNameShort}} and the time you spent applying to the position. At this time, the position has been filled.
+
+  We encourage you to continue to keep an eye on the career website for future openings and reapply.
+
+  Best,
+  The {{companyNameShort}} Talent Acquisition Team

@@ -1,4 +1,5 @@
 name: Blood Incubators of America
+shortName: BIOFA
 culture:
   desiredSkills:
     - key: groveling

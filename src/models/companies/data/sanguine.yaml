@@ -1,5 +1,5 @@
-name: Mortimer, Gargamel & Associates
-shortName: MGA
+name: Sanguine
+shortName: Sanguine
 culture:
   desiredSkills:
     - key: groveling
@@ -10,4 +10,4 @@ culture:
 selectivityModifier: 0.3
 payRangeModifier: 1.6
 contacts:
-  automation: "no-reply@mga.com"
+  automation: "no-reply@sanguine.com"
