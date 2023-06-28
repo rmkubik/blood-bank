@@ -3,5 +3,5 @@ effects:
   - hour 1
   - energy -2
 events:
-  - message 2day thankYouForInterest
-  - message now thankYouForApplying
+  - message 48 thankYouForInterest
+  - message 0 thankYouForApplying

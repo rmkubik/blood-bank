@@ -14,15 +14,17 @@ import { DateTimeModel } from "./DateTime";
 import parseActionEvents from "./actions/parseActionEvents";
 import fillTemplate from "./messages/fillTemplate";
 import { v4 } from "uuid";
+import { EventsModel } from "./Events";
 
 const RootModel = types
-  .model({
+  .model("Root", {
     character: CharacterModel,
     skills: SkillsModel,
     inbox: InboxModel,
     jobs: JobsModel,
     companies: CompaniesModel,
     dateTime: DateTimeModel,
+    events: EventsModel,
   })
   .actions((self) => ({
     takeAction(actionKey) {
@@ -39,17 +41,6 @@ const RootModel = types
       // tweakedResume: 2
       // coverLetter: true
       // applied: true
-      //
-      // Then maybe on a day rollover:
-      // get all applied letters?
-      // no?
-      // we probably want a timestamp where we make
-      // a bunch of rolls to see what happens?
-      //
-      // or maybe just every arbitrary value
-      // is broadcasted via mst and any thing
-      // that cares can observe a value, like time,
-      // and do whatever the hell it wants...?
 
       effects.forEach(([affectedItem, value]) => {
         switch (affectedItem) {
@@ -72,35 +63,47 @@ const RootModel = types
       events.forEach(([eventName, ...rest]) => {
         switch (eventName) {
           case "message": {
-            const [time, templateKey] = rest;
+            const [hours, templateKey] = rest;
 
-            const template = templates[templateKey];
-            const { currentOpening } = self.jobs;
-            const currentOpeningCompany = self.companies.list.get(
-              currentOpening.company
-            );
-
-            if (time === "now") {
-              self.inbox.addMessage({
-                subject: template.subject,
-                from:
-                  currentOpeningCompany.contacts[template.from] ??
-                  template.from,
-                body: fillTemplate(template.body, {
-                  playerName: "Randy",
-                  companyNameShort:
-                    currentOpeningCompany.shortName ??
-                    currentOpeningCompany.name,
-                  roleName: currentOpening.role,
-                  jeanPrice: 80,
-                }),
-                date: self.dateTime.current,
-              });
-            }
+            self.scheduleEvent({
+              type: "message",
+              date: self.dateTime.getDateHoursFromCurrent(parseInt(hours)),
+              template: templateKey,
+            });
             break;
           }
         }
       });
+
+      const triggeredEvents = self.events.getEventsBefore(
+        self.dateTime.current
+      );
+
+      triggeredEvents.forEach((event) => {
+        self.events.delete(event.id);
+
+        const template = templates[event.template];
+        const { currentOpening } = self.jobs;
+        const currentOpeningCompany = self.companies.list.get(
+          currentOpening.company
+        );
+
+        self.inbox.addMessage({
+          subject: template.subject,
+          from: currentOpeningCompany.contacts[template.from] ?? template.from,
+          body: fillTemplate(template.body, {
+            playerName: "Randy",
+            companyNameShort:
+              currentOpeningCompany.shortName ?? currentOpeningCompany.name,
+            roleName: currentOpening.role,
+            jeanPrice: 80,
+          }),
+          date: self.dateTime.current,
+        });
+      });
+    },
+    scheduleEvent(event) {
+      self.events.create(event, self.dateTime.current);
     },
   }));
 
@@ -177,6 +180,9 @@ const rootStore = RootModel.create({
   },
   dateTime: {
     current: new Date("2023-06-25T16:00:00"),
+  },
+  events: {
+    items: [],
   },
 });
 
