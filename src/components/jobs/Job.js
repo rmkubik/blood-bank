@@ -15,12 +15,14 @@ const Job = observer(({ opening }) => {
       <p>
         <strong>{company?.name ?? opening.company}</strong>
       </p>
-      <p>{opening.body}</p>
-      <ButtonSet>
-        <ActionButton action="tweakResume" />
-        <ActionButton action="writeCoverLetter" />
-        <ActionButton action="applyToJob" />
-      </ButtonSet>
+      <div className={classes.body}>
+        <p>{opening.body}</p>
+        <ButtonSet>
+          <ActionButton action="tweakResume" />
+          <ActionButton action="writeCoverLetter" />
+          <ActionButton action="applyToJob" />
+        </ButtonSet>
+      </div>
     </div>
   );
 });

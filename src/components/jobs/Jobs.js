@@ -9,9 +9,9 @@ const Jobs = observer(() => {
   const { jobs } = useRootStore();
 
   return (
-    <div>
-      <div className={classes.jobs}>
-        <h2>Jobs</h2>
+    <div className={classes.jobs}>
+      <h2>Jobs</h2>
+      <div className={classes.openings}>
         <ul>
           {jobs.openings.map((opening, index) => (
             // TODO: Jobs should have ids for usage as keys in

@@ -3,16 +3,12 @@ import Character from "./character/Character";
 import Inbox from "./inbox/Inbox";
 import Jobs from "./jobs/Jobs";
 import { RootContextProvider, rootStore } from "../models/Root";
+import * as classes from "./App.module.scss";
+import "normalize.css";
 
 const App = () => {
   return (
-    <div
-      style={{
-        display: "grid",
-        gridGap: "1rem",
-        gridTemplateColumns: "auto 1fr 1fr",
-      }}
-    >
+    <div className={classes.app}>
       <Character />
       <Inbox />
       <Jobs />

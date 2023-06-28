@@ -1,0 +1,11 @@
+.app {
+  position: relative;
+
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: auto 1fr 1fr;
+
+  padding: 8px;
+  height: 100vh;
+  box-sizing: border-box;
+}

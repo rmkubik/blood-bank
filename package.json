@@ -8,6 +8,7 @@
     "mobx": "^6.9.0",
     "mobx-react-lite": "^3.4.3",
     "mobx-state-tree": "^5.1.8",
+    "normalize.css": "^8.0.1",
     "parcel": "^2.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
