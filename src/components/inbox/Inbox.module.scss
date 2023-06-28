@@ -1,4 +1,15 @@
+.container {
+  overflow: hidden;
+
+  display: grid;
+  grid-template-rows: min-content 1fr 1fr;
+}
+
 .inbox {
+  overflow-y: scroll;
+
+  border-bottom: 1px solid black;
+
   ul {
     list-style: none;
     padding: 0;

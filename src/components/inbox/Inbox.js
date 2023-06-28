@@ -13,9 +13,9 @@ const Inbox = observer(() => {
   console.log({ events: getSnapshot(events) });
 
   return (
-    <div>
+    <div className={classes.container}>
+      <h2>Inbox</h2>
       <div className={classes.inbox}>
-        <h2>Inbox</h2>
         <ul>
           {/* TODO: We need to create message unique IDs in the 
           root store so we can give them keys */}
