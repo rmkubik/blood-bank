@@ -15,7 +15,7 @@ const Job = observer(({ opening }) => {
       <p>
         <strong>{company?.name ?? opening.company}</strong>
       </p>
-      <div className={classes.body}>
+      <div>
         <p>{opening.body}</p>
         <ButtonSet>
           <ActionButton action="tweakResume" />

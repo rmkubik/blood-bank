@@ -50,6 +50,24 @@ const CharacterModel = types
     name: types.string,
     skills: types.array(CharacterSkillModel),
   })
+  .views((self) => ({
+    canPayEnergy(amount) {
+      if (Math.sign(amount) !== -1) {
+        // Any increase can always be paid
+        return true;
+      }
+
+      return self.energy.current >= Math.abs(amount);
+    },
+    canPayBlood(amount) {
+      if (Math.sign(amount) !== -1) {
+        // Any increase can always be paid
+        return true;
+      }
+
+      return self.blood.current >= Math.abs(amount);
+    },
+  }))
   .actions((self) => ({
     adjustRent(value) {
       self.rent += value;

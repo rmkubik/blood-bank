@@ -1,7 +1,7 @@
 name: Apply
 effects:
   - hour 1
-  - energy -2
+  - energy -4
 events:
   - message 48 thankYouForInterest
   - message 0 thankYouForApplying

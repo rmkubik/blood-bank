@@ -5,12 +5,9 @@ import { useRootStore } from "../../models/Root";
 import MessagePreview from "./MessagePreview";
 import Message from "./Message";
 import { compareDesc } from "date-fns";
-import { getSnapshot } from "mobx-state-tree";
 
 const Inbox = observer(() => {
   const { inbox, events } = useRootStore();
-
-  console.log({ events: getSnapshot(events) });
 
   return (
     <div className={classes.container}>

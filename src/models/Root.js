@@ -15,6 +15,7 @@ import parseActionEvents from "./actions/parseActionEvents";
 import fillTemplate from "./messages/fillTemplate";
 import { v4 } from "uuid";
 import { EventsModel } from "./Events";
+import canActionCostsBePaid from "./actions/canActionCostsBePaid";
 
 const RootModel = types
   .model("Root", {
@@ -30,6 +31,11 @@ const RootModel = types
     takeAction(actionKey) {
       const action = actions[actionKey];
       const effects = parseActionEffects(action);
+
+      if (!canActionCostsBePaid(effects, self)) {
+        console.log(`Cannot pay costs of action.`);
+        return;
+      }
 
       // TODO:
       // I think we want to hook in here
@@ -80,8 +86,6 @@ const RootModel = types
       );
 
       triggeredEvents.forEach((event) => {
-        self.events.delete(event.id);
-
         const template = templates[event.template];
         const { currentOpening } = self.jobs;
         const currentOpeningCompany = self.companies.list.get(
@@ -100,6 +104,8 @@ const RootModel = types
           }),
           date: self.dateTime.current,
         });
+
+        self.events.delete(event.id);
       });
     },
     scheduleEvent(event) {
