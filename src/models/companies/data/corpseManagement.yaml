@@ -10,4 +10,8 @@ culture:
 selectivityModifier: 0.9
 payRangeModifier: 0.8
 contacts:
-  automation: "no-reply@corpsemanagement.gov"
+  automation: no-reply@corpsemanagement.gov
+  recruiter:
+    email: bmoreau@corpsemanagement.gov
+    givenName: Bone
+    familyName: Moreau

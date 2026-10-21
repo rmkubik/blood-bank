@@ -9,4 +9,8 @@ culture:
 selectivityModifier: 0.7
 payRangeModifier: 1.0
 contacts:
-  automation: "no-reply@vamp-industrial.com"
+  automation: no-reply@vamp-industrial.com
+  recruiter:
+    email: val.blackthorne@vamp-industrial.com
+    givenName: Valorie
+    familyName: Blackthorne

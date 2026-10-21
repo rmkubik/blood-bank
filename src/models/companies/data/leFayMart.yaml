@@ -9,4 +9,8 @@ culture:
 selectivityModifier: 0.5
 payRangeModifier: 1.2
 contacts:
-  automation: "no-reply@lefaymart.com"
+  automation: no-reply@lefaymart.com
+  recruiter:
+    email: cvanallen@lefaymart.com
+    givenName: Christian
+    familyName: van Allen

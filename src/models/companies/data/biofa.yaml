@@ -10,4 +10,8 @@ culture:
 selectivityModifier: 0.5
 payRangeModifier: 1.2
 contacts:
-  automation: "no-reply@biofa.com"
+  automation: no-reply@biofa.com
+  recruiter:
+    email: lindsey.cullen@biofa.com
+    givenName: Lindsey
+    familyName: Cullen

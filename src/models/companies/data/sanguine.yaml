@@ -10,4 +10,8 @@ culture:
 selectivityModifier: 0.3
 payRangeModifier: 1.6
 contacts:
-  automation: "no-reply@sanguine.com"
+  automation: no-reply@sanguine.com
+  recruiter:
+    email: fildelioncourt@sanguine.com
+    givenName: Filsom
+    familyName: de Lioncourt

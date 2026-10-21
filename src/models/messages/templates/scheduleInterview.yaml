@@ -1,0 +1,18 @@
+subject: Phone Interview Availability
+from: recruiter
+body: |
+  Hi {{playerName}},
+
+  I hope this email finds you robust and hardy. My name is {{recruiterGivenName}} and I work on the Recruiting Team at {{companyName}}. I appreciate you taking the time to apply with us for the position {{roleName}}. I've had a chance to review your application and am excited about your background.
+
+  I'd love to start the interview process with you. Please schedule a time for our initial phone screen below.
+
+  Prior to our call, I suggest you read up on the culture here at {{companyNameShort}}.
+
+  Best,
+  {{recruiterGivenName}} {{recruiterFamilyName}}
+  Recruiter
+  {{companyName}}
+actions:
+  - scheduleInterview
+  - readAboutCulture

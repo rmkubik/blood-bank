@@ -1,4 +1,4 @@
 name: Write Cover Letter
 effects:
   - hour 1
-  - energy -2
+  - energy -4

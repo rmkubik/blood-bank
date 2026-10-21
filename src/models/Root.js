@@ -16,6 +16,7 @@ import fillTemplate from "./messages/fillTemplate";
 import { v4 } from "uuid";
 import { EventsModel } from "./Events";
 import canActionCostsBePaid from "./actions/canActionCostsBePaid";
+import pickRandomlyFromArray from "../utils/random/pickRandomlyFromArray";
 
 const RootModel = types
   .model("Root", {
@@ -78,6 +79,28 @@ const RootModel = types
             });
             break;
           }
+          case "applyToJob": {
+            const delay = pickRandomlyFromArray([
+              12, 24, 48, 48, 72, 72, 128, 128, 160, 160, 160,
+            ]);
+            // TODO: Pass in vars from the player to the application
+            const { currentOpening } = self.jobs;
+            const currentOpeningCompany = self.companies.list.get(
+              currentOpening.company
+            );
+            const isSuccessful = currentOpeningCompany.handleApplication({});
+
+            const templateKey = isSuccessful
+              ? "scheduleInterview"
+              : "thankYouForApplying";
+
+            self.scheduleEvent({
+              type: "message",
+              date: self.dateTime.getDateHoursFromCurrent(delay),
+              template: templateKey,
+            });
+            break;
+          }
         }
       });
 
@@ -92,15 +115,31 @@ const RootModel = types
           currentOpening.company
         );
 
+        let from =
+          currentOpeningCompany.contacts[template.from] ?? template.from;
+
+        if (typeof from === "object") {
+          from = from.email;
+        }
+
         self.inbox.addMessage({
           subject: template.subject,
-          from: currentOpeningCompany.contacts[template.from] ?? template.from,
+          // TODO: this does not work if the player has changed which company
+          // is selected before they receive the email, we need to add this
+          // information to the scheduled event.
+          from,
+          // TODO: Add extra context vars needed for scheduleInterviewTemplate
           body: fillTemplate(template.body, {
             playerName: "Randy",
+            companyName: currentOpeningCompany.name,
             companyNameShort:
               currentOpeningCompany.shortName ?? currentOpeningCompany.name,
             roleName: currentOpening.role,
             jeanPrice: 80,
+            recruiterGivenName:
+              currentOpeningCompany.contacts.recruiter.givenName,
+            recruiterFamilyName:
+              currentOpeningCompany.contacts.recruiter.familyName,
           }),
           date: self.dateTime.current,
         });

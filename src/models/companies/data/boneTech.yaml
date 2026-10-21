@@ -9,4 +9,8 @@ culture:
 selectivityModifier: 0.5
 payRangeModifier: 1.2
 contacts:
-  automation: "no-reply@bone.tech"
+  automation: no-reply@bone.tech
+  recruiter:
+    email: aivashkov@bone.tech
+    givenName: Anders
+    familyName: Ivashkov
